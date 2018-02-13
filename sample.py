@@ -7,6 +7,7 @@ Author: RR
 
 from read_mnist import load_data, pretty_print
 from sklearn.linear_model import SGDClassifier
+from sklearn.neural_network import MLPClassifier
 import pandas as pd
 FEATURE = 0
 LABEL = 1
@@ -40,15 +41,32 @@ def main():
 
 
     clf = SGDClassifier(loss = "hinge", penalty = "l2")
-    clf.fit(train_set[FEATURE][0:50000],train_set[LABEL][0:50000])
-    counter = 0
-    for i in range(100):
-        print "the prediction is:" + str(clf.predict(train_set[FEATURE][50000+i]))
-        print "the actual one is:" + str(train_set[LABEL][50000+i])
-        if(train_set[LABEL][50000+i] == clf.predict(train_set[FEATURE][50000+i])):
-            counter+=1
-    print counter
+    clf.fit(train_set[FEATURE][0:60000],train_set[LABEL][0:60000])
+    counter1 = 0
+    for i in range(2500):
+        #print "the prediction is:" + str(clf.predict(test_set[FEATURE][i]))
+        #print "the actual one is:" + str(test_set[LABEL][i])
+        if(test_set[LABEL][i] == clf.predict(test_set[FEATURE][i])):
+            counter1+=1
+            
 
+    clf = MLPClassifier()
+    clf.fit(train_set[FEATURE][0:60000],train_set[LABEL][0:60000])
+    counter = 0
+    for i in range(2500):
+        #print "the prediction is:" + str(clf.predict(test_set[FEATURE][i]))
+        #print "the actual one is:" + str(test_set[LABEL][i])
+        if(test_set[LABEL][i] == clf.predict(test_set[FEATURE][i])):
+            counter+=1
+    print "SGD classifier: " 
+    print counter1
+    print "Percentage:"
+    print float(counter1)/2500.0    
+    print "MLP classifier: " 
+    print counter
+    print "Percentage:"
+    print float(counter)/2500.0
+    
 
 
     # And here's the label that goes with that training example
