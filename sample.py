@@ -10,6 +10,26 @@ from sklearn.linear_model import SGDClassifier
 import pandas as pd
 FEATURE = 0
 LABEL = 1
+def SGDClassifier_l2(train_set):
+    clf = SGDClassifier(loss = "hinge", penalty = "l2")
+    clf.fit(train_set[FEATURE][0:50000],train_set[LABEL][0:50000])
+    counter = 0
+    for i in range(100):
+        print "the prediction is:" + str(clf.predict(train_set[FEATURE][50000+i]))
+        print "the actual one is:" + str(train_set[LABEL][50000+i])
+        if(train_set[LABEL][50000+i] == clf.predict(train_set[FEATURE][50000+i])):
+            counter+=1
+    return counter
+def get_used_count(data):
+    size = 748
+    pixel_count = [0] * size
+
+
+    for i in range (data[FEATURE].shape[0]):
+        for j in range(size):
+            if (data[FEATURE][i][j] != 0.0):
+                pixel_count[j] += 1
+    return pixel_count
 
 def main():
     """ Example of how to load and parse MNIST data. """
@@ -35,19 +55,13 @@ def main():
     # the data in a nicer way: if you squint, you should be able to make out
     # the number 4 in the matrix data.
     print "\nFeatures of third training example:\n"
-    pretty_print(train_set[FEATURE][40010])
+    # pretty_print(train_set[FEATURE][40010])
 
 
-
-    clf = SGDClassifier(loss = "hinge", penalty = "l2")
-    clf.fit(train_set[FEATURE][0:50000],train_set[LABEL][0:50000])
-    counter = 0
-    for i in range(100):
-        print "the prediction is:" + str(clf.predict(train_set[FEATURE][50000+i]))
-        print "the actual one is:" + str(train_set[LABEL][50000+i])
-        if(train_set[LABEL][50000+i] == clf.predict(train_set[FEATURE][50000+i])):
-            counter+=1
-    print counter
+    used_count = get_used_count(train_set)
+    print used_count
+    # for i in range(len(used_count)):
+    #     print "unused:" + str(i) + "\n"
 
 
 
