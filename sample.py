@@ -7,9 +7,30 @@ Author: RR
 
 from read_mnist import load_data, pretty_print
 from sklearn.linear_model import SGDClassifier
+from sklearn.neural_network import MLPClassifier
 import pandas as pd
 FEATURE = 0
 LABEL = 1
+def MLPClassifier_identity(train_set):
+    clf = MLPClassifier(activation='identity',solver='adam')
+    clf.fit(train_set[FEATURE][0:50000],train_set[LABEL][0:50000])
+    counter = 0
+    for i in range(100):
+        print "the prediction is:" + str(clf.predict(train_set[FEATURE][50000+i]))
+        print "the actual one is:" + str(train_set[LABEL][50000+i])
+        if(train_set[LABEL][50000+i] == clf.predict(train_set[FEATURE][50000+i])):
+            counter+=1
+    return counter
+def MLPClassifier_relu(train_set):
+    clf = MLPClassifier(activation='relu',solver='adam')
+    clf.fit(train_set[FEATURE][0:50000],train_set[LABEL][0:50000])
+    counter = 0
+    for i in range(100):
+        print "the prediction is:" + str(clf.predict(train_set[FEATURE][50000+i]))
+        print "the actual one is:" + str(train_set[LABEL][50000+i])
+        if(train_set[LABEL][50000+i] == clf.predict(train_set[FEATURE][50000+i])):
+            counter+=1
+    return counter
 def SGDClassifier_l2(train_set):
     clf = SGDClassifier(loss = "hinge", penalty = "l2")
     clf.fit(train_set[FEATURE][0:50000],train_set[LABEL][0:50000])
