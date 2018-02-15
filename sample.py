@@ -15,14 +15,22 @@ from sklearn.feature_selection import chi2
 import pandas as pd
 FEATURE = 0
 LABEL = 1
-def feature_selection_chi2(train_set,num):
-    new_train_set = SelectKBest(chi2, k=num).fit_transform(train_set[FEATURE],
+def feature_selection_chi2(train_set,test_set,num):
+    sb = SelectKBest(chi2, k=num)
+    new_train_set = sb.fit_transform(train_set[FEATURE],
     train_set[LABEL])
+    new_test_set = sb.transform(test_set[FEATURE])
+    train_set = new_train_set
+    test_set = new_test_set
     print "new feature number is" + str(new_train_set.shape)
-    return new_train_set
-def feature_selection_variance(train_set,threshold):
+    print "new test number is" + str(new_test_set.shape)
+    return 1
+def feature_selection_variance(train_set,test_set,threshold):
     selector = VarianceThreshold()
     filtered = selector.fit_transform(train_set)
+    new_test_set = elector.fit_transform(test_set)
+    train_set = filtered
+    test_set = new_test_set
     return filtered
 
 def MLPclassifier(clf,train_set,test_set,train_number,test_number):
@@ -88,8 +96,8 @@ def main():
     #
 
     #
-    filtered = feature_selection_variance(train_set[FEATURE],0)
-    feature_selection_chi2(train_set,700)
+    # filtered = feature_selection_variance(train_set[FEATURE],0)
+    feature_selection_chi2(train_set,test_set,700)
 
     # clf = SGDClassifier(loss = "hinge", penalty = "l2")
     # clf.fit(train_set[FEATURE][0:60000],train_set[LABEL][0:60000])
