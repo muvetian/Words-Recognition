@@ -7,6 +7,11 @@ Author: RR
 
 from read_mnist import load_data, pretty_print
 from sklearn.linear_model import SGDClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import precision_score
+from sklearn.feature_selection import VarianceThreshold
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2
 import pandas as pd
 FEATURE = 0
 LABEL = 1
@@ -31,6 +36,60 @@ def get_used_count(data):
                 pixel_count[j] += 1
     return pixel_count
 
+def feature_selection_chi2(train_set,test_set,num):
+    sb = SelectKBest(chi2, k=num)
+    new_train_set = sb.fit_transform(train_set[FEATURE],
+    train_set[LABEL])
+    new_test_set = sb.transform(test_set[FEATURE])
+    train_set = new_train_set
+    test_set = new_test_set
+    print "new feature number is" + str(new_train_set.shape)
+    print "new test number is" + str(new_test_set.shape)
+    return 1
+def feature_selection_variance(train_set,test_set,threshold):
+    selector = VarianceThreshold()
+    filtered = selector.fit_transform(train_set)
+    new_test_set = elector.fit_transform(test_set)
+    train_set = filtered
+    test_set = new_test_set
+    return filtered
+
+def MLPclassifier(clf,train_set,test_set,train_number,test_number):
+    clf.fit(train_set[FEATURE][0:train_number],train_set[LABEL][0:train_number])
+    counter = 0
+    y_true = []
+    Y_pred = []
+
+    for i in range(test_number):
+        true = test_set[LABEL][i]
+        predict = clf.predict(test_set[FEATURE][i])
+        y_true.append(true)
+        y_pred.append(predict)
+        if(true == predict):
+            counter+=1
+    macro = precision_score(y_true, y_pred, average='macro')
+    micro = precision_score(y_true, y_pred, average='micro')
+    weighted = precision_score(y_true, y_pred, average='weighted')
+
+    return (counter, weighted)
+def SGDclassifier(clf,train_set,test_set,train_number,test_number):
+    clf.fit(train_set[FEATURE][0:train_number],train_set[LABEL][0:train_number])
+    counter = 0
+    y_true = []
+    Y_pred = []
+
+    for i in range(test_number):
+        true = test_set[LABEL][i]
+        predict = clf.predict(test_set[FEATURE][i])
+        y_true.append(true)
+        y_pred.append(predict)
+        if(true == predict):
+            counter+=1
+    macro = precision_score(y_true, y_pred, average='macro')
+    micro = precision_score(y_true, y_pred, average='micro')
+    weighted = precision_score(y_true, y_pred, average='weighted')
+
+    return (counter, macro, micro, weighted)
 def main():
     """ Example of how to load and parse MNIST data. """
 
@@ -54,14 +113,20 @@ def main():
     # also just use print to output it to the screen, but pretty_print formats
     # the data in a nicer way: if you squint, you should be able to make out
     # the number 4 in the matrix data.
-    print "\nFeatures of third training example:\n"
-    # pretty_print(train_set[FEATURE][40010])
+    # print "\nFeatures of third training example:\n"
+    #
 
+    #
+    # filtered = feature_selection_variance(train_set[FEATURE],0)
+    feature_selection_chi2(train_set,test_set,700)
 
-    used_count = get_used_count(train_set)
-    print used_count
-    # for i in range(len(used_count)):
-    #     print "unused:" + str(i) + "\n"
+    # clf = SGDClassifier(loss = "hinge", penalty = "l2")
+    # clf.fit(train_set[FEATURE][0:60000],train_set[LABEL][0:60000])
+    #
+    #
+    # clf = MLPClassifier()
+    # clf.fit(train_set[FEATURE][0:60000],train_set[LABEL][0:60000])
+    #
 
 
 

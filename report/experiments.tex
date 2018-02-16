@@ -1,0 +1,21 @@
+
+\section{Experiments}
+\label{sec:expts}
+It should be noted that in the original data set if every pixel grey scale value were to be used as a feature to train for the model might result in a huge set of features. Having such set of features may cause a commnon phenomena known as "the curse of dimensionality", which implicates that the increase in the dimensional space resulted from the increase in the number of features might dilute the statisical significance of the final result.\cite{bellman}
+That being said, in order to reduce the complexity of the final model in the hope of avoiding overfitting problems, a feature selection process was implemented for the experiments.\cite{hall}
+\subsection{Feature Selections}
+\label{feature}
+According to Hall, feature selection process consists of the following steps:
+\begin{itemize}
+	\item Starting point
+	\item Search orgnization
+	\item Evaluation strategy
+	\item Stopping criterion
+In this section, th
+\end{itemize}
+As introduced in the "Data Preparation" section, after some inspections through the data sets, it was observed that some pixels's grey scale values stayed the same all the time. Those points generally are more likely to have no significant coreThus, those low-variance features could be the starting points.
+The backward elemination method was adpoted, which means that only deletions were considered.
+\subsection{Classifiers}
+\label{class}
+\paragraph{Super Vector Machines}
+

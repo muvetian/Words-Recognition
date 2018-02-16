@@ -1,0 +1,21 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Bellman}{2003}]{bellman}
+Bellman, R.~E.
+\newblock 2003.
+\newblock {\em {Dynamic Programming}}.
+\newblock Courier Dover Publications.
+
+\bibitem[\protect\citeauthoryear{Hall}{1999}]{hall}
+Hall, M.~A.
+\newblock 1999.
+\newblock {\em {Correlation-based Feature Selection for Machine Learning}}.
+\newblock Pearson Education.
+
+\bibitem[\protect\citeauthoryear{Russell and Norvig}{2003}]{aima}
+Russell, S.~J., and Norvig, P.
+\newblock 2003.
+\newblock {\em {Artificial Intelligence: A Modern Approach}}.
+\newblock Pearson Education.
+
+\end{thebibliography}
