@@ -138,7 +138,7 @@ def main():
 
     #
     # filtered = feature_selection_variance(train_set[FEATURE],0)
-    feature_selection_chi2(train_set,test_set,700)
+    # feature_selection_chi2(train_set,test_set,700)
 
     # clf = SGDClassifier(loss = "hinge", penalty = "l2")
     # clf.fit(train_set[FEATURE][0:60000],train_set[LABEL][0:60000])

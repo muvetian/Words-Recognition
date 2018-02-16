@@ -19,4 +19,10 @@ Jonathan~Milgram, Mohamed~Cheriet, R.~S.
   handwriting recognition with svms?
 \newblock {\em HAL archives}.
 
+\bibitem[\protect\citeauthoryear{Yann Le~Cun}{1997}]{cun}
+Yann Le~Cun, Léon~Bottou, Y.~B.
+\newblock 1997.
+\newblock Reading checks with multilayer graph transformer networks.
+\newblock {\em Speech and Image Processing Services Research Lab}.
+
 \end{thebibliography}
