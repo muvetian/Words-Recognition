@@ -15,6 +15,7 @@ from sklearn.feature_selection import chi2
 import pandas as pd
 FEATURE = 0
 LABEL = 1
+
 def feature_selection_chi2(train_set,test_set,num):
     sb = SelectKBest(chi2, k=num)
     new_train_set = sb.fit_transform(train_set[FEATURE],
