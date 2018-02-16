@@ -12,10 +12,11 @@ Hall, M.~A.
 \newblock {\em {Correlation-based Feature Selection for Machine Learning}}.
 \newblock Pearson Education.
 
-\bibitem[\protect\citeauthoryear{Russell and Norvig}{2003}]{aima}
-Russell, S.~J., and Norvig, P.
-\newblock 2003.
-\newblock {\em {Artificial Intelligence: A Modern Approach}}.
-\newblock Pearson Education.
+\bibitem[\protect\citeauthoryear{Jonathan~Milgram}{2006}]{milgram}
+Jonathan~Milgram, Mohamed~Cheriet, R.~S.
+\newblock 2006.
+\newblock ?one against one? or ?one against all?: Which one is better for
+  handwriting recognition with svms?
+\newblock {\em HAL archives}.
 
 \end{thebibliography}
