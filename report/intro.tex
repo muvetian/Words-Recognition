@@ -9,17 +9,18 @@ handwritten letters that each were converted into 28 x 28 set of
 pixels displaying the color of each pixel. There was then a label for
 each letter that we were then asked to predict for a test set. We
 investigated different classifiers and looked at many resources to
-determine what the greatest predictors were. 
-\cite{milgram}
+determine what the greatest predictors were. From that dataset we constructed a
+training set and test set consisting of 50,000 and 10,000 letters respectively
+which were then used later to get our results.\\ 
 
-% Citations: As you can see above, you create a citation by using the
-% \cite{} command. Inside the braces, you provide a "key" that is
-% uniue to the paper/book/resource you are citing. How do you
-% associate a key with a specific paper? You do so in a separate bib
-% file --- for this document, the bib file is called
-% project1.bib. Open that file to continue reading...
-
-% Note that merely hitting the "return" key will not start a new line
-% in LaTeX. To break a line, you need to end it with \\. To begin a 
-% new paragraph, end a line with \\, leave a blank
-% line, and then start the next line (like in this example).
+We were given many helpful insights into better classifiers through the research
+that had already been done by many. We used the research done in “One Against
+One” or “One Against All”: Which One is Better for Handwriting Recognition with
+SVMs?,to build a foothold in Multilayer Perceptron\cite{milgram}. Although they
+used it as their baseline classifier we saw it as an improvement on the SVM we
+had used previously. The paper, Reading Checks with Multilayer Graph Transformer
+Networks improved upon Milgram's study and allowed us to look more in-depth into
+MLP creating an improved classifier and a better result \cite{cun}. The paper,
+Correlation-based Feature Selection for Machine Learning, gave us insight into
+feature selection and which features to use in our final dataset which allowed
+us to improve our performance dramatically \cite{hall}.
